@@ -1,0 +1,212 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: grid; /* Flexbox para centrar el sobre */
+    justify-content: center;
+    overflow: hidden;
+    
+}
+
+.contenedor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.fondo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 450%;
+    
+    background-image: url("img/fondo.jpg");
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+
+    animation: mover 60s linear infinite;
+}
+
+/* Capa oscura */
+.fondo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5); /* ← cambia 0.4 para más o menos oscuridad */
+}
+
+
+@keyframes mover {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-50%);
+    }
+}
+
+/* Contenedor principal para separar el video del sobre */
+.video-musica {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+     /* Espacio entre el video y el sobre */
+    perspective: 1000px; /* Para darle profundidad si queremos rotarlo */
+}
+
+.marco-video {
+    width: 25vw;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    padding: 5px 5px 5px 5px; /* El padding inferior es más ancho para el efecto Polaroid */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    transform: rotate(-2deg); /* Un poco inclinado para que se vea orgánico */
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease;
+}
+
+.marco-video:hover {
+    transform: rotate(0deg) scale(1.02); /* Se endereza al pasar el mouse */
+}
+
+/* Ajustamos el tamaño del video */
+.marco-video iframe {
+    width: 500px;  /* Tamaño pequeño para que no opaque al sobre */
+    height: 280px;
+    display: block;
+}
+
+
+/* Contenedor de la foto para darle margen */
+.foto-carta {
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.foto-carta img {
+    max-width: 150px; /* Ajusta el tamaño que quieras */
+    height: auto;
+    border: 8px solid white; /* Marco blanco tipo Polaroid */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transform: rotate(3deg); /* Le da un toque "tirado" al azar */
+    transition: transform 0.3s ease;
+}
+
+.foto-carta img:hover {
+    transform: rotate(0deg) scale(1.1); /* Se endereza y agranda al pasar el mouse */
+}
+
+
+/* 2. El Sobre (Botón de activación) */
+.sobre-container {
+    display: flex;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative; 
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#hover:hover {
+    transform: scale(1.05); /* Efecto zoom al pasar el mouse */
+}
+
+.sobre-img {
+    max-width: 100vw; /* Ajusta el tamaño de tu sobre aquí */
+    display: block;
+}
+
+/* 3. El Fondo Oscuro (Overlay) */
+/* 3. El Fondo Oscuro (Overlay) - CORREGIDO PARA SCROLL */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    
+    /* CAMBIOS IMPORTANTES AQUÍ: */
+    display: flex;
+    justify-content: center;
+    
+    /* 1. En vez de 'center', usamos 'flex-start' para que empiece desde arriba */
+    align-items: flex-start; 
+    
+    /* 2. Activamos el scroll vertical si la carta es muy larga */
+    overflow-y: auto; 
+    
+    /* 3. Damos un poco de aire arriba y abajo para que la carta no toque los bordes */
+    padding: 50px 0; 
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+/* Clase para activar el modal */
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 4. La Carta (Papel rayado) */
+.carta {
+    background-color: #fffdf5; /* Color crema suave */
+    width: 90%;
+    max-width: 500px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    
+    /* --- EL TRUCO DE LOS RENGLONES --- */
+    font-family: 'Indie Flower', cursive; /* Fuente manuscrita */
+    font-size: 22px;
+    line-height: 30px; /* La altura de línea debe coincidir con el gradiente */
+    
+    /* Creamos las líneas con un gradiente repetitivo */
+    background-image: repeating-linear-gradient(
+        transparent,
+        transparent 29px,
+        #9fb3c8 30px /* Color de la línea (azul grisáceo) */
+    );
+}
+
+.modal-overlay.active .carta {
+    transform: translateY(0); /* Animación de subida al abrir */
+}
+
+/* Título de la carta */
+.carta h2 {
+    margin-top: 0;
+    margin-bottom: 30px; /* Espacio de un renglón */
+    text-align: center;
+    color: #333;
+}
+
+/* 5. Botón de cerrar (X) */
+.cerrar-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-family: sans-serif;
+    cursor: pointer;
+    color: #888;
+    font-weight: bold;
+}
+
+.cerrar-btn:hover {
+    color: #333;
+}

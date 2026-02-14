@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nami Nami</title>
+    <link rel="icon" type="image/png" href="img/icon.jpg">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <div class="contenedor">
+    <div class="fondo"></div></div>
+    
+    <div class="video-musica">
+        <div class="marco-video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/r9HXtzGSJ9E?si=StAgfBvghyoP2vMi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </div>
+
+
+    <div class="sobre-container" id="abrirCarta">
+        <div id="hover">
+            <img src="img/carta.png" alt="Sobre" class="sobre-img">
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="miModal">
+        <div class="carta">
+            <span class="cerrar-btn" id="cerrarCarta">&times;</span>
+            
+            <h2>Dear Eunice (Nami :3):</h2>
+            <p>
+                Beyond what I feel for you, first: a reminder of how valuable you are. I think you are an incredible girl and I admire you deeply. You are talented, intelligent, you aspire to have a good life and to do good things, and that speaks very well of your heart. I value and appreciate you more than you may imagine ♥️
+                <br><br>
+                In these almost five months I can't say I know everything about you, but what you've allowed me to see so far seems wonderful. Every part I discover confirms what a special person you are. I would never tire of saying that you are important and valuable, not only to me but to everyone around you. I've heard how our friends speak about you, and I always agree when they highlight your virtues ✨
+                <br><br>
+                For that very reason, when moments come when things don't turn out as you expected or when you don't know what to do, I want you to remember something, never underestimate yourself. Even if you feel lost, someone like you, with your qualities, your heart, and your strength, will always find the way to move forward. Never give up 🐱
+                <br><br>
+                And speaking of us… what can I say, I like you hehe. We have many differences, and we will surely discover many more over time, but I've always thought that love isn't about being the same, it's about accepting and respecting the other as they are. Maybe the idea of "soulmates" doesn't quite fit, because we're all different; I can't be your soulmate, but I do want to try to be your complementary soul. Hehe poetic✨ (but I'm serious 🥺🌹)
+                <br><br>
+                I also want to tell you something about me. I know that sometimes I can seem cold, carefree, or like someone who doesn't think things through. Those are traits that have helped me face many situations in life. But the truth is that I do feel, and I can feel deeply… as deeply as the affection I have for you. And I want you to always feel confident telling me what you think of me. Whatever it is, I want to hear you, understand you, and improve 🫂
+                <br><br>
+                Thinking about all this, it's inevitable to talk about the future. We know it's uncertain and no one can guess what will happen. Even so, I want a future by your side. I want to get to know you more, grow with you, progress together. I want everything… whatever may come. But I also want something very important: to enjoy the present with you and keep learning new things about life, together 🤍
+                <br><br>
+                Lastly, even if there is distance, I will always keep you company. Because I want to be with you and by your side while you pursue your dreams… and to be part of them.
+
+                I love you🐱💛
+                <br><br>
+                With Love,<br>
+                Gastón (Gato :3).
+            </p>
+            <div class="foto-carta">
+                <img src="img/gxn.jpg" alt="Foto de recuerdo">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Lógica simple con JavaScript
+        const sobre = document.getElementById('abrirCarta');
+        const modal = document.getElementById('miModal');
+        const cerrar = document.getElementById('cerrarCarta');
+
+        // Al hacer click en el sobre, añadimos la clase 'active'
+        sobre.addEventListener('click', () => {
+            modal.classList.add('active');
+        });
+
+        // Al hacer click en la X, quitamos la clase
+        cerrar.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        // Opcional: Cerrar si haces click fuera del papel (en el fondo oscuro)
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
