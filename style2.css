@@ -120,6 +120,7 @@ body {
 }
 
 .sobre-img {
+    width: 40vw;
     max-width: 100vw; /* Ajusta el tamaño de tu sobre aquí */
     display: block;
 }
